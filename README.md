@@ -1,1 +1,1 @@
-![Alt text](images/simulator.png)
+![Alt text](images/screenshot.png)
