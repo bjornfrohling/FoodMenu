@@ -60,6 +60,8 @@ struct CheckoutView: View {
         }
         .navigationTitle("Payment")
         .navigationBarTitleDisplayMode(.inline)    }
+    
+
 }
 
 #Preview {
