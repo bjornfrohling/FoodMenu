@@ -22,6 +22,7 @@
 		3010AE172C97416500EE09A0 /* ItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3010AE162C97416500EE09A0 /* ItemDetail.swift */; };
 		3010AE192C974A7B00EE09A0 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3010AE182C974A7B00EE09A0 /* OrderView.swift */; };
 		307E87F52C989CCC00D67DC0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307E87F42C989CCC00D67DC0 /* MainView.swift */; };
+		307E87F72C98A43900D67DC0 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307E87F62C98A43900D67DC0 /* CheckoutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		3010AE162C97416500EE09A0 /* ItemDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetail.swift; sourceTree = "<group>"; };
 		3010AE182C974A7B00EE09A0 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		307E87F42C989CCC00D67DC0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		307E87F62C98A43900D67DC0 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				3010AE0E2C96E4E500EE09A0 /* Order.swift */,
 				3010AE0C2C96E4C500EE09A0 /* Helper.swift */,
 				3010ADE22C96E46C00EE09A0 /* FoodMenuApp.swift */,
+				307E87F62C98A43900D67DC0 /* CheckoutView.swift */,
 				3010ADE42C96E46C00EE09A0 /* ContentView.swift */,
 				3010AE162C97416500EE09A0 /* ItemDetail.swift */,
 				3010AE182C974A7B00EE09A0 /* OrderView.swift */,
@@ -284,6 +287,7 @@
 			files = (
 				3010AE172C97416500EE09A0 /* ItemDetail.swift in Sources */,
 				307E87F52C989CCC00D67DC0 /* MainView.swift in Sources */,
+				307E87F72C98A43900D67DC0 /* CheckoutView.swift in Sources */,
 				3010AE192C974A7B00EE09A0 /* OrderView.swift in Sources */,
 				3010ADE52C96E46C00EE09A0 /* ContentView.swift in Sources */,
 				3010ADE32C96E46C00EE09A0 /* FoodMenuApp.swift in Sources */,
