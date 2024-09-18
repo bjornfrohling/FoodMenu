@@ -3,10 +3,10 @@ name: iOS CI
 on:
   push:
     branches:
-      - main  # Run tests on push to the main branch
+      - main
   pull_request:
     branches:
-      - main  # Run tests on pull requests to the main branch
+      - main
 
 jobs:
   test:
@@ -17,7 +17,28 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Set up Xcode
-      run: sudo xcode-select -s /Applications/Xcode_15.0.app  # Ensure you're using the right version
+      run: sudo xcode-select -s /Applications/Xcode_15.0.app
+
+    - name: List available simulators  # Log available simulators to verify
+      run: xcrun simctl list
+
+    - name: Install dependencies
+      run: |
+        sudo gem install cocoapods  # If using CocoaPods
+        pod install                 # Install pods if necessary
+      working-directory: ./YourProjectName  # Adjust the directory path if necessary
 
     - name: Build and test
-      run: xcodebuild test -workspace YourProjectName.xcworkspace -scheme YourProjectName -destination 'platform=iOS Simulator,name=iPhone 14'
+      run: |
+        xcodebuild clean test \
+          -workspace YourProjectName.xcworkspace \
+          -scheme YourSchemeName \
+          -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
+          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+      working-directory: ./YourProjectName  # Adjust the directory path if necessary
+
+    - name: Show logs in case of failure
+      if: failure()
+      run: |
+        cat ~/Library/Logs/DiagnosticReports/xcodebuild*.crash
+        tail -n 2000 ~/Library/Logs/xcbuild/*.log
