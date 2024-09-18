@@ -22,20 +22,13 @@ jobs:
     - name: List available simulators  # Log available simulators to verify
       run: xcrun simctl list
 
-    - name: Install dependencies
-      run: |
-        sudo gem install cocoapods  # If using CocoaPods
-        pod install                 # Install pods if necessary
-      working-directory: ./YourProjectName  # Adjust the directory path if necessary
-
     - name: Build and test
       run: |
         xcodebuild clean test \
-          -workspace YourProjectName.xcworkspace \
-          -scheme YourSchemeName \
+          -scheme FoodMenu \
           -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
           CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-      working-directory: ./YourProjectName  # Adjust the directory path if necessary
+      working-directory: ./FoodMenu  # Adjust the directory path if necessary
 
     - name: Show logs in case of failure
       if: failure()
