@@ -24,6 +24,12 @@ jobs:
     - name: List available simulators
       run: xcrun simctl list
 
+    - name: Shutdown all simulators
+      run: xcrun simctl shutdown all
+
+    - name: Boot desired simulator
+      run: xcrun simctl boot "iPhone 14" || true
+
     - name: Build and Test
       run: |
         xcodebuild build -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' -allowProvisioningUpdates
