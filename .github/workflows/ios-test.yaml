@@ -17,13 +17,13 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Set up Xcode
-      uses: apple-actions/setup-xcode@v2
+      uses: actions/setup-xcode@v3
       with:
         xcode-version: '15.x'
 
     - name: Install Dependencies
       run: |
-        xcodebuild -resolvePackageDependencies -scheme FoodMenu
+        xcodebuild -resolvePackageDependencies -workspace FoodMenu.xcworkspace -scheme FoodMenu
 
     - name: Build and Test
       run: |
