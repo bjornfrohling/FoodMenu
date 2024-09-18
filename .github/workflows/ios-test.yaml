@@ -30,6 +30,16 @@ jobs:
       run: ls -la FoodMenu
       working-directory: .
 
+    - name: Check if FoodMenu.xcodeproj exists
+      run: |
+        if [ -d "FoodMenu.xcodeproj" ]; then
+          echo "FoodMenu.xcodeproj exists"
+        else
+          echo "FoodMenu.xcodeproj does not exist"
+          exit 1
+        fi
+      working-directory: .
+
     - name: Build and test
       run: |
         set -o pipefail
