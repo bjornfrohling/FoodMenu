@@ -18,7 +18,7 @@ jobs:
 
     - name: Build and Test
       run: |
-        xcodebuild test -workspace FoodMenu.xcworkspace -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' CODE_SIGNING_REQUIRED=NO
+        xcodebuild test -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' CODE_SIGNING_REQUIRED=NO
 
     - name: Upload Test Results
       uses: actions/upload-artifact@v3
