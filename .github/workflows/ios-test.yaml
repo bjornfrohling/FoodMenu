@@ -26,6 +26,7 @@ jobs:
       run: |
         set -o pipefail
         xcodebuild clean test \
+          -project FoodMenu.xcodeproj \
           -scheme FoodMenu \
           -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
           CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | tee xcodebuild.log
