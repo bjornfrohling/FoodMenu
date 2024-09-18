@@ -19,16 +19,14 @@ jobs:
     - name: Set up Xcode
       uses: maxim-lobanov/setup-xcode@v1
       with:
-        xcode-version: 'latest'  # Use a specific version if needed
-
-
+        xcode-version: 'latest'
 
     - name: Build and Test
       run: |
         set -o pipefail
-        xcodebuild clean build -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' -allowProvisioningUpdates
-        xcodebuild clean test -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' -allowProvisioningUpdates
-        xcodebuild clean test -project FoodMenu.xcodeproj -scheme FoodMenuUITests -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' -allowProvisioningUpdates
+        xcodebuild clean build -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 15' -allowProvisioningUpdates
+        xcodebuild clean test -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 15' -allowProvisioningUpdates
+        xcodebuild clean test -project FoodMenu.xcodeproj -scheme FoodMenuUITests -destination 'platform=iOS Simulator,name=iPhone 15' -allowProvisioningUpdates
 
     - name: Upload Test Results
       uses: actions/upload-artifact@v3
