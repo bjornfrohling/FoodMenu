@@ -22,6 +22,14 @@ jobs:
     - name: List available simulators
       run: xcrun simctl list
 
+    - name: List root directory contents
+      run: ls -la
+      working-directory: .
+
+    - name: List FoodMenu directory contents
+      run: ls -la FoodMenu
+      working-directory: .
+
     - name: Build and test
       run: |
         set -o pipefail
