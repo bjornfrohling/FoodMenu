@@ -16,11 +16,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up Xcode
-      uses: actions/setup-xcode@v3
-      with:
-        xcode-version: '15.x'
-
     - name: Install Dependencies
       run: |
         xcodebuild -resolvePackageDependencies -workspace FoodMenu.xcworkspace -scheme FoodMenu
