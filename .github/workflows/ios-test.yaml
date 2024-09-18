@@ -21,16 +21,7 @@ jobs:
       with:
         xcode-version: 'latest'  # Use a specific version if needed
 
-    - name: List available simulators
-      run: xcrun simctl list
 
-    - name: Shutdown all simulators
-      run: xcrun simctl shutdown all
-
-    - name: Boot desired simulator
-      run: |
-        xcrun simctl boot "iPhone 14" || true
-        xcrun simctl list | grep "iPhone 14"
 
     - name: Build and Test
       run: |
