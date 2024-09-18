@@ -30,6 +30,7 @@ jobs:
           -scheme FoodMenu \
           -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
           CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | tee xcodebuild.log
+      working-directory: .
 
     - name: Show logs in case of failure
       if: failure()
