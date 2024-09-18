@@ -1,4 +1,4 @@
-name: iOS CI
+name: iOS Tests
 
 on:
   push:
@@ -9,50 +9,29 @@ on:
       - main
 
 jobs:
-  test:
+  build:
     runs-on: macos-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v3
 
     - name: Set up Xcode
-      run: sudo xcode-select -s /Applications/Xcode_15.0.app
+      uses: apple-actions/setup-xcode@v2
+      with:
+        xcode-version: '15.x'
 
-    - name: List available simulators
-      run: xcrun simctl list
-
-    - name: List root directory contents
-      run: ls -la
-      working-directory: .
-
-    - name: List FoodMenu directory contents
-      run: ls -la FoodMenu
-      working-directory: .
-
-    - name: Check if FoodMenu.xcodeproj exists
+    - name: Install Dependencies
       run: |
-        if [ -d "FoodMenu.xcodeproj" ]; then
-          echo "FoodMenu.xcodeproj exists"
-        else
-          echo "FoodMenu.xcodeproj does not exist"
-          exit 1
-        fi
-      working-directory: .
+        xcodebuild -resolvePackageDependencies -scheme FoodMenu
 
-    - name: Build and test
+    - name: Build and Test
       run: |
-        set -o pipefail
-        xcodebuild clean test \
-          -project FoodMenu.xcodeproj \
-          -scheme FoodMenu \
-          -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
-          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | tee xcodebuild.log
-      working-directory: .
+        xcodebuild test -workspace FoodMenu.xcworkspace -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' CODE_SIGNING_REQUIRED=NO
 
-    - name: Show logs in case of failure
-      if: failure()
-      run: |
-        cat xcodebuild.log
-        cat ~/Library/Logs/DiagnosticReports/xcodebuild*.crash
-        tail -n 2000 ~/Library/Logs/xcbuild/*.log
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: |
+          **/Logs/Test/*.xcresult
