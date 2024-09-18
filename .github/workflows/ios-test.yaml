@@ -16,16 +16,21 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Setup Xcode
+      uses: apple-actions/setup-xcode@v3
+      with:
+        xcode-version: '15.0'
+
     - name: Build and Test
       run: |
         # Build the project
-        xcodebuild build -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' CODE_SIGNING_REQUIRED=NO -allowProvisioningUpdates
-        
+        xcodebuild build -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' -allowProvisioningUpdates
+
         # Run unit tests
-        xcodebuild test -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' CODE_SIGNING_REQUIRED=NO -allowProvisioningUpdates
+        xcodebuild test -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' -allowProvisioningUpdates
 
         # Run UI tests
-        xcodebuild test -project FoodMenu.xcodeproj -scheme FoodMenuUITests -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' CODE_SIGNING_REQUIRED=NO -allowProvisioningUpdates
+        xcodebuild test -project FoodMenu.xcodeproj -scheme FoodMenuUITests -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' -allowProvisioningUpdates
 
     - name: Upload Test Results
       uses: actions/upload-artifact@v3
