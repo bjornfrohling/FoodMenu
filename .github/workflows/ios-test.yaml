@@ -28,13 +28,16 @@ jobs:
       run: xcrun simctl shutdown all
 
     - name: Boot desired simulator
-      run: xcrun simctl boot "iPhone 14" || true
+      run: |
+        xcrun simctl boot "iPhone 14" || true
+        xcrun simctl list | grep "iPhone 14"
 
     - name: Build and Test
       run: |
-        xcodebuild build -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' -allowProvisioningUpdates
-        xcodebuild test -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' -allowProvisioningUpdates
-        xcodebuild test -project FoodMenu.xcodeproj -scheme FoodMenuUITests -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' -allowProvisioningUpdates
+        set -o pipefail
+        xcodebuild clean build -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' -allowProvisioningUpdates
+        xcodebuild clean test -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' -allowProvisioningUpdates
+        xcodebuild clean test -project FoodMenu.xcodeproj -scheme FoodMenuUITests -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' -allowProvisioningUpdates
 
     - name: Upload Test Results
       uses: actions/upload-artifact@v3
