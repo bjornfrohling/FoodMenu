@@ -21,6 +21,9 @@ jobs:
       with:
         xcode-version: 'latest'  # Use a specific version if needed
 
+    - name: List available simulators
+      run: xcrun simctl list
+
     - name: Build and Test
       run: |
         xcodebuild build -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' -allowProvisioningUpdates
@@ -32,4 +35,3 @@ jobs:
       with:
         name: test-results
         path: '**/Logs/Test/*.xcresult'
-        
