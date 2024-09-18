@@ -24,9 +24,14 @@ jobs:
     - name: Build and Test
       run: |
         set -o pipefail
+        # Build the app
         xcodebuild clean build -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 15' -allowProvisioningUpdates
-        xcodebuild clean test -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 15' -allowProvisioningUpdates
-        xcodebuild clean test -project FoodMenu.xcodeproj -scheme FoodMenuUITests -destination 'platform=iOS Simulator,name=iPhone 15' -allowProvisioningUpdates
+
+        # Run unit tests
+        xcodebuild test -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 15' -allowProvisioningUpdates
+
+        # Run UI tests
+        xcodebuild test -project FoodMenu.xcodeproj -scheme FoodMenu -destination 'platform=iOS Simulator,name=iPhone 15' -allowProvisioningUpdates -only-testing:FoodMenuUITests
 
     - name: Upload Test Results
       uses: actions/upload-artifact@v3
